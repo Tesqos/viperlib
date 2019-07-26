@@ -19,7 +19,7 @@ pipeline {
 
       stage('UPLOAD') {
         steps {
-          sh 'python3 -m twine upload dist/* -u viperlib'
+          sh 'python3 -m twine upload dist/* -u vipervit'
         }
        }
 
