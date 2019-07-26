@@ -4,7 +4,7 @@ setup(
     name='viperlib',
     author='vipervit',
     author_email='vitolg1@gmail.com',
-    licence='Apache',
+    license='Apache',
     description='General use library.',
     version='0.1',
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests", "test*"])
