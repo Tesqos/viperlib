@@ -3,6 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='viperlib',
     author='vipervit',
+    author_email='vitolg1@gmail.com'
     licence='Apache',
     description='General use library.',
     version='0.1',
