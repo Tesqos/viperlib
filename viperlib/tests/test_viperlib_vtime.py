@@ -1,4 +1,4 @@
-from ..src.vtime import *
+from viperlib.src.vtime import *
 
 def test_secs2time():
     assert secs2time(0) == '00:00:00'

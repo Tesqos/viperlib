@@ -1,5 +1,5 @@
-from ..src.jsd import jsondata
-from ..src.misc import dir_get
+from viperlib.src.jsd import jsondata
+from viperlib.src.misc import dir_get
 import os
 
 def test_jsd():

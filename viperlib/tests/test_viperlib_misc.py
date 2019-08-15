@@ -1,11 +1,11 @@
 import os
 import pytest
-from ..src.misc import *
+from viperlib.src.misc import *
 
 this_dir = os.path.dirname(__file__)
 
 def test_dir_get():
-    from .. import tests as parent
+    from viperlib import tests as parent
     # test for this module's directory
     assert dir_get(__file__) == this_dir
     # test for this module's parent's directory

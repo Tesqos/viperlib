@@ -1,6 +1,6 @@
 import datetime
 import time
-from .misc import strdigit_normalize
+from viperlib.src.misc import strdigit_normalize
 
 def current_time_24h():
     """Returns current time in format hh:mm:ss"""
