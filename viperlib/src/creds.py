@@ -18,16 +18,15 @@ class creds():
     CREDS_TYPE_SECURE = 'keyring' # used for storing credentials securely using keyring package
     KWD_UID = 'uid'
     KWD_PWD = 'pwd'
-    DEFAULT_FNAME = 'credentials'
+    DEFAULT_FNAME_PLAIN = 'credentials'
 
     def __init__(self, type=None):
+        self._hnd = jsondata()
+        self._hnd.filename = self.DEFAULT_FNAME_PLAIN
         self.type = type
         if type == None:
             self.type = self.CREDS_TYPE_SECURE
         assert self.type == self.CREDS_TYPE_PLAIN or self.type == self.CREDS_TYPE_SECURE, 'Invalid credentials type value.'
-        if self.type == self.CREDS_TYPE_PLAIN:
-            self._hnd = jsondata()
-            self._hnd.filename = self.DEFAULT_FNAME
 
     @property
     def type(self):
