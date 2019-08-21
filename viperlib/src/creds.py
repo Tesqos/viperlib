@@ -14,8 +14,8 @@ class creds():
     _pwd = None
     _hnd = None
 
-    CREDS_TYPE_PLAIN = -1000 # used for storing credentials as plain text in JSON format
-    CREDS_TYPE_SECURE = -2000 # used for storing credentials securely using keyring package
+    CREDS_TYPE_PLAIN = 'json' # used for storing credentials as plain text in JSON format
+    CREDS_TYPE_SECURE = 'keyring' # used for storing credentials securely using keyring package
 
     def __init__(self, type=None):
         self.type = type
@@ -60,10 +60,12 @@ class creds():
 
     @property
     def location(self):
+        assert self.type == self.CREDS_TYPE_PLAIN, 'Location method compatible only with secure type.'
         return self._hnd.location
 
     @location.setter
     def location(self, val):
+        assert self.type == self.CREDS_TYPE_PLAIN, 'Location method compatible only with secure type.'
         self._hnd.location = val
 
     def get(self):
