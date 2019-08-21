@@ -12,7 +12,7 @@ class creds():
     _alias = None
     _user = None
     _pwd = None
-    _hnd = None
+    _unsecure = jsondata()
 
     CREDS_TYPE_PLAIN = 'json' # used for storing credentials as plain text in JSON format
     CREDS_TYPE_SECURE = 'keyring' # used for storing credentials securely using keyring package
@@ -21,8 +21,7 @@ class creds():
     DEFAULT_FNAME_PLAIN = 'credentials'
 
     def __init__(self, type=None):
-        self._hnd = jsondata()
-        self._hnd.filename = self.DEFAULT_FNAME_PLAIN
+        self._unsecure.filename = self.DEFAULT_FNAME_PLAIN
         self.type = type
         if type == None:
             self.type = self.CREDS_TYPE_SECURE
@@ -60,23 +59,16 @@ class creds():
     def password(self, val):
         self._pwd = val
 
-    @property
-    def location(self):
-        assert self.type == self.CREDS_TYPE_PLAIN, 'Location method compatible only with secure type.'
-        return self._hnd.location
-
-    @location.setter
-    def location(self, val):
-        assert self.type == self.CREDS_TYPE_PLAIN, 'Location method compatible only with secure type.'
-        self._hnd.location = val
+    def get_plain(self):
+        return self._unsecure
 
     def get(self):
         if self.type == self.CREDS_TYPE_SECURE:
             self.user = keyring.get_password(self.alias, self.KWD_UID)
             self.password = keyring.get_password(self.user, self.KWD_PWD)
         elif self.type == self.CREDS_TYPE_PLAIN:
-            self._hnd.get_from_file()
-            t = self._hnd.contents[self.alias]
+            self._unsecure.get_from_file()
+            t = self._unsecure.contents[self.alias]
             self.user = t[self.KWD_UID]
             self.password = t[self.KWD_PWD]
         else:

@@ -26,7 +26,7 @@ class keyring_record:
 def test_json_credentials_valid():
     x = creds(creds.CREDS_TYPE_PLAIN)
     x.alias = test_alias
-    x.location = dir_data
+    x.get_plain().location = dir_data
     x.get()
     assert x.user == test_uid
     assert x.password == test_pwd
