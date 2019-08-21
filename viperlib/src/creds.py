@@ -16,6 +16,9 @@ class creds():
 
     CREDS_TYPE_PLAIN = 'json' # used for storing credentials as plain text in JSON format
     CREDS_TYPE_SECURE = 'keyring' # used for storing credentials securely using keyring package
+    KWD_UID = 'uid'
+    KWD_PWD = 'pwd'
+    DEFAULT_FNAME = 'credentials'
 
     def __init__(self, type=None):
         self.type = type
@@ -24,7 +27,7 @@ class creds():
         assert self.type == self.CREDS_TYPE_PLAIN or self.type == self.CREDS_TYPE_SECURE, 'Invalid credentials type value.'
         if self.type == self.CREDS_TYPE_PLAIN:
             self._hnd = jsondata()
-            self._hnd.filename = 'credentials'
+            self._hnd.filename = self.DEFAULT_FNAME
 
     @property
     def type(self):
@@ -70,12 +73,12 @@ class creds():
 
     def get(self):
         if self.type == self.CREDS_TYPE_SECURE:
-            self.user = keyring.get_password(self.alias, 'uid')
-            self.password = keyring.get_password(self.user, 'pwd')
+            self.user = keyring.get_password(self.alias, self.KWD_UID)
+            self.password = keyring.get_password(self.user, self.KWD_PWD)
         elif self.type == self.CREDS_TYPE_PLAIN:
             self._hnd.get_from_file()
             t = self._hnd.contents[self.alias]
-            self.user = t['uid']
-            self.password = t['pwd']
+            self.user = t[self.KWD_UID]
+            self.password = t[self.KWD_PWD]
         else:
             raise ValueError('Could not detemine credentials type.')
