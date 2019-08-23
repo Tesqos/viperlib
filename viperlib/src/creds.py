@@ -59,7 +59,10 @@ class creds():
     def password(self, val):
         self._pwd = val
 
-    def get_plain(self):
+    @property
+    def plain(self):
+        if self.type != self.CREDS_TYPE_PLAIN:
+            raise AttributeError('Wrong value for credentials type: ' + self.type)
         return self._unsecure
 
     def get(self):
