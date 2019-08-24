@@ -1,3 +1,3 @@
-def loggers_set_level(mode, *args):
-        for each in args:
-            each.setLevel(mode)
+def loggers_set_level(level, loggers):
+    for each in loggers:
+        each.setLevel(level)
