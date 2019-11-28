@@ -32,12 +32,12 @@ logger = logging.getLogger(__name__)
 
 class jsondata():
 
-    _f = None
-    _dir = None
-    _contents = {}
-
     def __init__(self):
-        pass
+        self._f = None
+        self._dir = None
+        self._contents = {}
+        self.mustsave = False
+        self.mustdelete = False
 
     @property
     def filename(self):
@@ -83,24 +83,28 @@ class jsondata():
             self.contents = json.load(f)
 
     def save_to_file(self):
-        with open(self.full_path(), 'w') as f:
-            json.dump(self.contents, f)
+        if self.mustsave:
+            with open(self.full_path(), 'w') as f:
+                json.dump(self.contents, f)
 
     def clear(self):
         self.contents = {}
         logger.debug('Contents cleared.')
 
-
     def destroy(self):
         self.clear()
-        try:
-            os.remove(self.full_path())
-            logger.debug(self.full_path() + ' deleted.')
-        except FileNotFoundError:
-            logger.debug('File not found, nothing to delete: ' + self.full_path())
+        if self.mustdelete:
+            self._file_delete()
 
     def reset(self):
         self.clear()
         self.destroy()
         self.filename = None
         self.location = None
+
+    def _file_delete(self):
+        try:
+            os.remove(self.full_path())
+            logger.debug(self.full_path() + ' deleted.')
+        except FileNotFoundError:
+            logger.debug(self.full_path() + ' not found (nothing to delete.)')
