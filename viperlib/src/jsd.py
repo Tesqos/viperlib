@@ -97,12 +97,12 @@ class jsondata():
 
     def destroy(self):
         self.clear()
-        if not self.file_exists() == None:
+        if not self.file_exists():
             try:
                 os.remove(self.full_path())
                 logger.debug(self.full_path() + ' deleted.')
             except FileNotFoundError:
-                pass
+                logger.debug('File not found, nothing to delete: ' + self.full_path())
 
     def reset(self):
         self.clear()

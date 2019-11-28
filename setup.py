@@ -6,6 +6,6 @@ setup(
     author_email='vitolg1@gmail.com',
     license='Apache',
     description='General use library.',
-    version='0.42',
+    version='0.43',
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests", "test*"])
 )
