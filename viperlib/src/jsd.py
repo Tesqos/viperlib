@@ -73,11 +73,7 @@ class jsondata():
         self._contents = obj
 
     def file_exists(self):
-        try:
-            res = os.path.exists(self.full_path())
-            return res
-        except:
-            return False
+        return os.path.exists(self.full_path())
 
     def is_empty(self):
         return self.contents == {}
@@ -97,12 +93,11 @@ class jsondata():
 
     def destroy(self):
         self.clear()
-        if not self.file_exists():
-            try:
-                os.remove(self.full_path())
-                logger.debug(self.full_path() + ' deleted.')
-            except FileNotFoundError:
-                logger.debug('File not found, nothing to delete: ' + self.full_path())
+        try:
+            os.remove(self.full_path())
+            logger.debug(self.full_path() + ' deleted.')
+        except FileNotFoundError:
+            logger.debug('File not found, nothing to delete: ' + self.full_path())
 
     def reset(self):
         self.clear()
