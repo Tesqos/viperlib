@@ -1,3 +1,4 @@
+import psutil
 
 def dir_get(path):
     """
@@ -52,3 +53,16 @@ def list_of_files_with_extension_get(dir, ext):
             if ''.join('.' + ext) in f:
                 out.append(f)
     return(out)
+
+
+def isProcessRunning(pname):
+    """Checks whether a process specified by pname is running.
+    The solution is found at https://thispointer.com/python-check-if-a-process-is-running-by-name-and-find-its-process-id-pid/
+    """
+    for proc in psutil.process_iter():
+        try:
+            if pname.lower() in proc.name().lower():
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
+    return False;

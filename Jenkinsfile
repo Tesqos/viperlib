@@ -25,6 +25,7 @@ pipeline {
 
       stage('DEPLOY') {
         steps {
+          sh 'pip install --upgrade psutil'
           sh 'pip install --upgrade viperlib'
         }
        }
