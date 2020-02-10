@@ -14,6 +14,7 @@ pipeline {
         steps {
           sh 'rm -r -f dist'
           sh 'python3 setup.py sdist'
+          sh 'pip install --upgrade psutil'
        }
       }
 
@@ -25,7 +26,6 @@ pipeline {
 
       stage('DEPLOY') {
         steps {
-          sh 'pip install --upgrade psutil'
           sh 'pip install --upgrade viperlib'
         }
        }
