@@ -7,3 +7,8 @@ viperlib/src/__pycache__/jsd.cpython-37.pyc
 *.pyc
 viperlib/src/__pycache__/jsd.cpython-37.pyc
 viperlib/src/__pycache__/misc.cpython-37.pyc
+viperlib/__pycache__/__init__.cpython-37.pyc
+viperlib/src/__pycache__/__init__.cpython-37.pyc
+viperlib/src/__pycache__/misc.cpython-37.pyc
+viperlib/tests/__pycache__/test_viperlib_creds.cpython-37-PYTEST.pyc
+viperlib/tests/__pycache__/test_viperlib_misc.cpython-37-PYTEST.pyc

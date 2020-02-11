@@ -59,3 +59,6 @@ def test_list_of_files_with_extension_get():
 def test_months():
     assert months() == ['', 'January', 'February', 'March', 'April', 'May', \
                         'June', 'July', 'August', 'September', 'October', 'November', 'December'], 'Not expected list of strings.'
+                        
+def test_isProcessRunning():
+    assert isProcessRunning('python')
