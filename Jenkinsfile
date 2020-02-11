@@ -42,5 +42,6 @@ pipeline {
           sh 'docker push vipervit/viperlib:latest'
         }
       }
+  }
 
 }
