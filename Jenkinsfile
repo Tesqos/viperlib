@@ -35,11 +35,6 @@ pipeline {
         }
        }
 
-       stage('DOCKER: Make image') {
-        steps('remove old and build new image')     {
-          sh 'docker rmi vipervit/viperlib:latest --force'
-          sh 'docker build -t vipervit/viperlib:latest .'
-        }
       }
 
       stage('DOCKER: Push image') {
