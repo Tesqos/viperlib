@@ -37,7 +37,7 @@ pipeline {
 
       stage('DOCKER: Push image') {
         steps('push image') {
-          sh 'docker push vipervit/viperlib:latest'
+          sh 'docker push vipervit/viperlib'
         }
       }
   }
